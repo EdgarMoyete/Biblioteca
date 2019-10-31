@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BD_BibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="id_alumno" />
+    </Key>
+    <Property Name="id_alumno" Type="int" Nullable="false" />
+    <Property Name="apePat" Type="varchar" MaxLength="30" />
+    <Property Name="apeMat" Type="varchar" MaxLength="30" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" />
+    <Property Name="edad" Type="int" />
+    <Property Name="sexo" Type="varchar" MaxLength="1" />
+    <Property Name="telefono" Type="varchar" MaxLength="10" />
+    <Property Name="correo" Type="varchar" MaxLength="50" />
+    <Property Name="direccion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Devoluciones">
+    <Key>
+      <PropertyRef Name="id_devolucion" />
+    </Key>
+    <Property Name="id_devolucion" Type="int" Nullable="false" />
+    <Property Name="fechaDevolucion" Type="varchar" MaxLength="50" />
+    <Property Name="id_alumno" Type="int" />
+    <Property Name="id_libro" Type="int" />
+  </EntityType>
+  <EntityType Name="Libros">
+    <Key>
+      <PropertyRef Name="id_libro" />
+    </Key>
+    <Property Name="id_libro" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="autor" Type="varchar" MaxLength="50" />
+    <Property Name="editorial" Type="varchar" MaxLength="50" />
+    <Property Name="anoEdicion" Type="int" />
+    <Property Name="existencia" Type="int" />
+  </EntityType>
+  <EntityType Name="Prestamos">
+    <Key>
+      <PropertyRef Name="id_prestamo" />
+    </Key>
+    <Property Name="id_prestamo" Type="int" Nullable="false" />
+    <Property Name="fechaDevolucion" Type="varchar" MaxLength="50" />
+    <Property Name="id_alumno" Type="int" />
+    <Property Name="id_libro" Type="int" />
+  </EntityType>
+  <Association Name="fk_idDA">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+    <End Role="Devoluciones" Type="Self.Devoluciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="id_alumno" />
+      </Principal>
+      <Dependent Role="Devoluciones">
+        <PropertyRef Name="id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idDL">
+    <End Role="Libros" Type="Self.Libros" Multiplicity="0..1" />
+    <End Role="Devoluciones" Type="Self.Devoluciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libros">
+        <PropertyRef Name="id_libro" />
+      </Principal>
+      <Dependent Role="Devoluciones">
+        <PropertyRef Name="id_libro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idPA">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="id_alumno" />
+      </Principal>
+      <Dependent Role="Prestamos">
+        <PropertyRef Name="id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idPL">
+    <End Role="Libros" Type="Self.Libros" Multiplicity="0..1" />
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libros">
+        <PropertyRef Name="id_libro" />
+      </Principal>
+      <Dependent Role="Prestamos">
+        <PropertyRef Name="id_libro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BD_BibliotecaModelStoreContainer">
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Devoluciones" EntityType="Self.Devoluciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Libros" EntityType="Self.Libros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prestamos" EntityType="Self.Prestamos" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_idDA" Association="Self.fk_idDA">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Devoluciones" EntitySet="Devoluciones" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idDL" Association="Self.fk_idDL">
+      <End Role="Libros" EntitySet="Libros" />
+      <End Role="Devoluciones" EntitySet="Devoluciones" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idPA" Association="Self.fk_idPA">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Prestamos" EntitySet="Prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idPL" Association="Self.fk_idPL">
+      <End Role="Libros" EntitySet="Libros" />
+      <End Role="Prestamos" EntitySet="Prestamos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

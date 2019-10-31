@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Biblioteca</title>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/Transacciones.js"></script>
+	<meta charset="utf-8" />
+    <style type="text/css">
+        .carousel-inner {
+            text-align: center;
+        }
+
+        .carousel .item > img {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default" style="background-color:yellowgreen">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    Biblioteca
+                </a>
+            </div>
+            <div id="navegacion" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-book"> </span>
+                            Libros<span class="caret"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-education"> </span>
+                            Alumnos<span class="caret"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-retweet"> </span>
+                            Prestamos<span class="caret"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"> </span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">
+                                    <span class="glyphicon glyphicon-thumbs-up"> </span>
+                                Mi cuenta</a></li>
+                            <li><a href="#">
+                                    <span class="glyphicon glyphicon-wrench"> </span>
+                                Configuración</a></li>
+                            <li class="divider"></li>
+                            <li> <a href="#">
+                                     <span class="glyphicon glyphicon-remove-circle"> </span>
+                                Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="jumbotron" style="background-color:darkseagreen">
+            <h1>Biblioteca</h1>
+            <p>Leer es un arte</p>
+            <p>
+                <a class="btn btn-success">Leer mas...</a>
+            </p>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading" style="text-align:center">
+                Galería de Imágenes
+            </div>
+            <div class="panel-body">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="Img/libro1.jpg" alt="Biblioteca" width="1000" height="400"/>
+                            <div class="carousel-caption">
+                                
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="Img/libro2.jpg" alt="Biblioteca" width="1000" height="400"/>
+                            <div class="carousel-caption">
+                                
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="Img/libro3.jpg" alt="Biblioteca" width="1000" height="400"/>
+                            <div class="carousel-caption">
+                                
+                            </div>
+                        </div>
+                        .....
+                    </div>
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-success">
+                <div class="panel-heading" style="text-align:center">
+                    <h3>Existencias</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group" id="existencia">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3>Libros</h3>
+                </div>
+                <div class="panel-body">
+                    <label>ID Libro:</label><input id="txtIDLibro" type="number" />
+                    <br />
+                    <label>Nombre:</label><input id="txtNombreLibro" type="text" />
+                    <br />
+                    <label>Autor:</label><input id="txtAutor" type="text" />
+                    <br />
+                    <label>Editorial:</label><input id="txtEditorial" type="text" />
+                    <br />
+                    <label>Año Edición:</label><input id="txtAnoEdicion" type="number" />
+                    <br />
+                    <label>Existencia:</label><input id="txtExistencia" type="number" />
+                    <br />
+                    <button id="btnAgregarLibros" class="btn btn-success">
+                        Agregar
+                    </button>
+                </div>
+                <div class="panel-footer" style="text-align:center">
+                    <button id="btnLimpiarLibros" class="btn btn-primary">
+                        Limpiar
+                    </button>
+                    <br />
+                    <br />
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                        Modal
+                    </button>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Comentarios</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Por favor ingrese sus comentarios y posteriormente el boton de guardar
+                                    <input type="text" id="txtComentarios" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-success">Guardar Comentarios</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3>Alumnos</h3>
+                </div>
+                <div class="panel-body">
+                    <label>ID Alumno:</label><input id="txtIDAlumno" type="number" />
+                    <br />
+                    <label>Apellido Paterno:</label><input id="txtApePat" type="text" />
+                    <br />
+                    <label>Apellido Materno:</label><input id="txtApeMat" type="text" />
+                    <br />
+                    <label>Nombre:</label><input id="txtNombreAlumno" type="text" />
+                    <br />
+                    <label>Edad:</label><input id="txtEdad" type="number" />
+                    <br />
+                    <label>Sexo:</label><!--<input id="txtSexo" type="text" />-->
+                    <select id="cmbSexo">
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
+                    <br />
+                    <label>Telefono:</label><!--<input id="txtTelefono" type="text" />-->
+                    <input id="txtTelefono" type="tel" title="Debe usar este formato: (###) ###-####" pattern="/(/d/d/d/)?/d/d/d-/d/d/d/d" />
+                    <br />
+                    <label>Correo:</label><!--<input id="txtCorreo" type="text" />-->
+                    <input id="txtCorreo" type="email" name="email" placeholder="ejemplo@proveedor.com" required />
+                    <br />
+                    <label>Dirección:</label><input id="txtDireccion" type="text" />
+                    <br />
+                    <button id="btnAgregarAlumnos" class="btn btn-success">
+                        Agregar
+                    </button>
+                </div>
+                <div class="panel-footer" style="text-align:center">
+                    <button id="btnLimpiarAlumnos" class="btn btn-primary">
+                        Limpiar
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3>Prestamos</h3>
+                </div>
+                <div class="panel-body">
+                    <label>ID Prestamo:</label><input id="txtIDPrestamo" type="number" />
+                    <br />
+                    <label>Fecha:</label><!--<input id="txtFechaPre" type="text" />-->
+                    <input id="dtpFechaPre" type="date"/>
+                    <br />
+                    <label>ID Alumno:</label><!--<input id="txtIDAluP" type="number" />-->
+                    <select id="txtIDAluP">
+
+                    </select>
+                    <br />
+                    <label>ID Libro:</label><!--<input id="txtIDLibP" type="number" />-->
+                    <select id="txtIDLibP">
+
+                    </select>
+                    <br />
+                    <button id="btnAgregarPrestamos" class="btn btn-success">
+                        Agregar
+                    </button>
+                </div>
+                <div class="panel-footer" style="text-align:center">
+                    <button id="btnLimpiarPrestamos" class="btn btn-primary">
+                        Limpiar
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3>Devoluciones</h3>
+                </div>
+                <div class="panel-body">
+                    <label>ID Devolución:</label><input id="txtIDDevolucion" type="number" />
+                    <br />
+                    <label>Fecha:</label><!--<input id="txtFechaDev" type="text" />-->
+                    <input id="dtpFechaDev" type="date" />
+                    <br />
+                    <label>ID Alumno:</label><!--<input id="txtIDAluD" type="number" />-->
+                    <select id="txtIDAluD">
+
+                    </select>
+                    <br />
+                    <label>ID Libro:</label><!--<input id="txtIDLibD" type="number" />-->
+                    <select id="txtIDLibD">
+
+                    </select>
+                    <br />
+                    <button id="btnAgregarDevoluciones" class="btn btn-success">
+                        Agregar
+                    </button>
+                </div>
+                <div class="panel-footer" style="text-align:center">
+                    <button id="btnLimpiarDevoluciones" class="btn btn-primary">
+                        Limpiar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="alert alert-info" style="text-align:center">
+            Edgar Moisés Hernández González 13TE0177
+        </div>
+    </footer>
+</body>
+</html>

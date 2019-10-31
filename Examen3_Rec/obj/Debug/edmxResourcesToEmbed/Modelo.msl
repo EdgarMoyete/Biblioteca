@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BD_BibliotecaModelStoreContainer" CdmEntityContainer="BD_BibliotecaEntities1">
+    <EntitySetMapping Name="Alumnos">
+      <EntityTypeMapping TypeName="BD_BibliotecaModel.Alumnos">
+        <MappingFragment StoreEntitySet="Alumnos">
+          <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
+          <ScalarProperty Name="apePat" ColumnName="apePat" />
+          <ScalarProperty Name="apeMat" ColumnName="apeMat" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Devoluciones">
+      <EntityTypeMapping TypeName="BD_BibliotecaModel.Devoluciones">
+        <MappingFragment StoreEntitySet="Devoluciones">
+          <ScalarProperty Name="id_devolucion" ColumnName="id_devolucion" />
+          <ScalarProperty Name="fechaDevolucion" ColumnName="fechaDevolucion" />
+          <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
+          <ScalarProperty Name="id_libro" ColumnName="id_libro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Libros">
+      <EntityTypeMapping TypeName="BD_BibliotecaModel.Libros">
+        <MappingFragment StoreEntitySet="Libros">
+          <ScalarProperty Name="id_libro" ColumnName="id_libro" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="autor" ColumnName="autor" />
+          <ScalarProperty Name="editorial" ColumnName="editorial" />
+          <ScalarProperty Name="anoEdicion" ColumnName="anoEdicion" />
+          <ScalarProperty Name="existencia" ColumnName="existencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prestamos">
+      <EntityTypeMapping TypeName="BD_BibliotecaModel.Prestamos">
+        <MappingFragment StoreEntitySet="Prestamos">
+          <ScalarProperty Name="id_prestamo" ColumnName="id_prestamo" />
+          <ScalarProperty Name="fechaDevolucion" ColumnName="fechaDevolucion" />
+          <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
+          <ScalarProperty Name="id_libro" ColumnName="id_libro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

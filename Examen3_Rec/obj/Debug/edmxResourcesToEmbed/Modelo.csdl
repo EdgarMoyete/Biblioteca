@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BD_BibliotecaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="id_alumno" />
+    </Key>
+    <Property Name="id_alumno" Type="Int32" Nullable="false" />
+    <Property Name="apePat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="apeMat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="edad" Type="Int32" />
+    <Property Name="sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Devoluciones" Relationship="Self.fk_idDA" FromRole="Alumnos" ToRole="Devoluciones" />
+    <NavigationProperty Name="Prestamos" Relationship="Self.fk_idPA" FromRole="Alumnos" ToRole="Prestamos" />
+  </EntityType>
+  <EntityType Name="Devoluciones">
+    <Key>
+      <PropertyRef Name="id_devolucion" />
+    </Key>
+    <Property Name="id_devolucion" Type="Int32" Nullable="false" />
+    <Property Name="fechaDevolucion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_alumno" Type="Int32" />
+    <Property Name="id_libro" Type="Int32" />
+    <NavigationProperty Name="Alumnos" Relationship="Self.fk_idDA" FromRole="Devoluciones" ToRole="Alumnos" />
+    <NavigationProperty Name="Libros" Relationship="Self.fk_idDL" FromRole="Devoluciones" ToRole="Libros" />
+  </EntityType>
+  <EntityType Name="Libros">
+    <Key>
+      <PropertyRef Name="id_libro" />
+    </Key>
+    <Property Name="id_libro" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="autor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="editorial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="anoEdicion" Type="Int32" />
+    <Property Name="existencia" Type="Int32" />
+    <NavigationProperty Name="Devoluciones" Relationship="Self.fk_idDL" FromRole="Libros" ToRole="Devoluciones" />
+    <NavigationProperty Name="Prestamos" Relationship="Self.fk_idPL" FromRole="Libros" ToRole="Prestamos" />
+  </EntityType>
+  <EntityType Name="Prestamos">
+    <Key>
+      <PropertyRef Name="id_prestamo" />
+    </Key>
+    <Property Name="id_prestamo" Type="Int32" Nullable="false" />
+    <Property Name="fechaDevolucion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_alumno" Type="Int32" />
+    <Property Name="id_libro" Type="Int32" />
+    <NavigationProperty Name="Alumnos" Relationship="Self.fk_idPA" FromRole="Prestamos" ToRole="Alumnos" />
+    <NavigationProperty Name="Libros" Relationship="Self.fk_idPL" FromRole="Prestamos" ToRole="Libros" />
+  </EntityType>
+  <Association Name="fk_idDA">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+    <End Role="Devoluciones" Type="Self.Devoluciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="id_alumno" />
+      </Principal>
+      <Dependent Role="Devoluciones">
+        <PropertyRef Name="id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idPA">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="id_alumno" />
+      </Principal>
+      <Dependent Role="Prestamos">
+        <PropertyRef Name="id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idDL">
+    <End Role="Libros" Type="Self.Libros" Multiplicity="0..1" />
+    <End Role="Devoluciones" Type="Self.Devoluciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libros">
+        <PropertyRef Name="id_libro" />
+      </Principal>
+      <Dependent Role="Devoluciones">
+        <PropertyRef Name="id_libro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idPL">
+    <End Role="Libros" Type="Self.Libros" Multiplicity="0..1" />
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libros">
+        <PropertyRef Name="id_libro" />
+      </Principal>
+      <Dependent Role="Prestamos">
+        <PropertyRef Name="id_libro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BD_BibliotecaEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" />
+    <EntitySet Name="Devoluciones" EntityType="Self.Devoluciones" />
+    <EntitySet Name="Libros" EntityType="Self.Libros" />
+    <EntitySet Name="Prestamos" EntityType="Self.Prestamos" />
+    <AssociationSet Name="fk_idDA" Association="Self.fk_idDA">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Devoluciones" EntitySet="Devoluciones" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idPA" Association="Self.fk_idPA">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Prestamos" EntitySet="Prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idDL" Association="Self.fk_idDL">
+      <End Role="Libros" EntitySet="Libros" />
+      <End Role="Devoluciones" EntitySet="Devoluciones" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idPL" Association="Self.fk_idPL">
+      <End Role="Libros" EntitySet="Libros" />
+      <End Role="Prestamos" EntitySet="Prestamos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
